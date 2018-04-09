@@ -1,0 +1,32 @@
+<packageInfo>
+    <bundleId>ch.mdaus.exampletweak</bundleId>
+    <name>Example Tweak</name>
+    <version>0.0.2</version>
+    <descriptions>
+        <description>
+            An example package for testing out our personal Cydia repository
+        </description>
+        <description>
+            This is just a bit more detail about what the tweak does... nothing :)
+        </description>
+    </descriptions>
+    <compatibility>
+        <miniOS>11.0</miniOS>
+        <maxiOS>11.1.2</maxiOS>
+    </compatibility>
+    <dependencies>
+        <dependency>mobilesubstrate</dependency>
+        <dependency>some other dependency</dependency>
+    </dependencies>
+    <changelog>
+        <change>
+            <changeVersion>V0.0.2 </changeVersion>
+            <changeDescription>An important change</changeDescription>
+            <changeDescription>Another important change</changeDescription>
+        </change>
+        <change>
+            <changeVersion>V0.0.1</changeVersion>
+            <changeDescription>Initial Release</changeDescription>
+        </change>
+    </changelog>
+</packageInfo>
