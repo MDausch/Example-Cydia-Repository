@@ -45,11 +45,7 @@ sudo apt-get install git
 ```
 
 ## Getting the Example repo:
-
-Either download the repo as a .zip file from [here]() or if you have git installed, you can open a terminal window and run
-```
-TODO fix this link too
-```
+Download the repo as a .zip file from [here](https://github.com/MDausch/Example-Cydia-Repository/archive/master.zip) and extract that to wherever you want to work from
 
 ## Repo Configuration
 
