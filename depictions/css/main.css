@@ -20,7 +20,6 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -48,76 +47,216 @@ table {
 }
 
 body {
-  margin: 0;
+	margin: 0;
 	padding: 0;
-	background-color:#efeff4;
-  -webkit-font-smoothing: antialiased;
-  margin: 0;
-  font:14px -apple-system-font,".Helvetica NeueUI","Helvetica Neue",sans-serif;
-  width:100%;
-  padding-bottom:50px;
+	background-color: #efeff4;
+	-webkit-font-smoothing: antialiased;
+	margin: 0;
+	font: 14px -apple-system-font, ".Helvetica NeueUI", "Helvetica Neue", sans-serif;
+	width: 100%;
+	padding-bottom: 50px;
 }
 
 .boxTitle {
-  margin-top:35px;
-  margin-bottom:10px;
-  margin-left:auto;
-  margin-right:auto;
-  width:260px;
-  text-align: left;
-  font-size: 17px;
+	margin-top: 35px;
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 88vw;
+	max-width: 760px;
+	text-align: left;
+	font-size: 17px;
 }
 
-.box{
-  background-color: #fffdfd;
-  margin-bottom:20px;
-  width:240px;
-  border-radius: 10px;
-  padding:10px;
-  margin-left:auto;
-  margin-right:auto;
-  text-align: center;
+.box {
+	background-color: #fffdfd;
+	margin-bottom: 20px;
+	width: 90vw;
+	max-width: 800px;
+	border-radius: 10px;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 }
 
-.box h1{
-  display:inline-block;
-}
-
-#packageTitle{
-  margin-bottom:10px;
-}
-
-#bundleId{
-	float:right;
-  display:inline-block;
-  font-size:10px;
-}
-
-#version{
-  float:left;
-  display:inline-block;
-  font-size:10px;
-}
-
-#MINIOS,#MAXIOS{
-  display:inline-block;
+.box h1 {
+	display: inline-block;
 }
 
 #description {
-  text-align: left;
-  margin: 0px, 10px, 10px, 10px;
-  padding-top:10px;
-}
-#description li{
-  margin-bottom:10px;
+	text-align: left;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
-#changeLog {
-  text-align:left;
-  padding-bottom:20px;
+#description li {
+	white-space: pre-line;
+	padding-top: 5px;
+	padding-bottom: 10px;
 }
 
-#changeLog h1{
-  margin-top:20px;
-  margin-bottom:5px;
+#description li:first-child {
+	padding-top: 10px;
+	font-weight: bold;
+	font-size: 120%;
+}
+
+#changelog {
+	text-align: left;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#changelog li {
+	white-space: pre-line;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+#changelog li:first-child {
+	padding-top: 10px;
+}
+
+#changelog h1 {
+	margin-bottom: 5px;
+}
+
+#changelog table {
+	margin-top: 10px;
+	width: 100%;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 30px;
+}
+
+#changelog table tr {
+	border-top: 1px solid #ccc;
+	text-align: left;
+}
+
+.title-container {
+	position: relative;
+}
+
+.title-container > * {
+	display: inline-block;
+}
+
+#pill {
+	font-size: 75%;
+	margin-left: 10px;
+	padding: 2px;
+	padding-left: 7px;
+	padding-right: 7px;
+	background-color: lightgrey;
+	border-radius: 10px;
+}
+
+#changelog-date {
+	font-size: 75%;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	float: right;
+}
+
+#screenshots {
+	overflow-x: scroll;
+	white-space: nowrap;
+	-webkit-overflow-scrolling: touch;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+#screenshots li {
+	display: inline;
+}
+
+#screenshots img {
+	border-radius: 8px;
+	max-width: 90%;
+	max-height: 400px;
+	padding: 16px;
+	-webkit-user-drag: none;
+}
+
+table {
+	width: 95%;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 30px;
+}
+
+tr {
+	border-bottom: 1px solid #ccc;
+	text-align: right;
+}
+
+tr:last-child {
+	border-bottom: 0;
+}
+
+th {
+	text-align: left;
+	padding-left: 10px;
+}
+
+td {
+	padding-right: 10px;
+}
+
+#links tr {
+	text-align: left;
+}
+
+tr a {
+	color: #147dfb;
+	display: block;
+	padding-left: 10px;
+	text-decoration: none;
+}
+
+tr a:hover {
+	color: #023d85;
+	background-color: rgb(240, 240, 240);
+	border-radius: 10px;
+}
+
+tr a:after {
+	content: "›";
+	font-weight: 300;
+	font-size: 30px;
+	float: right;
+	margin-right: 5px;
+	transform: translateY(-2px);
+}
+
+tr a img {
+	height: 20px;
+	border-radius: 5px;
+    vertical-align: -5px;
+    margin-right: 5px;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: black;
+		color: white;
+	}
+
+	.box {
+		background-color: dimgrey;
+	}
+
+	tr a {
+		color: white;
+		font-weight: bold;
+	}
+
+	#pill {
+		background-color: grey;
+	}
 }

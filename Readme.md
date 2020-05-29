@@ -1,4 +1,5 @@
 # Maxwell Dausch's Example Cydia Repository
+_Improved by [RedenticDev](https://twitter.com/RedenticDev)_
 
 This is a shell template for creating your own Cydia repository so you can host your own tweaks and themes
 
@@ -7,7 +8,6 @@ I have uploaded a copy of this example repository to [mdausch.github.com](mdausc
 
 ## Prerequisites
 You will need a Mac or Linux system to create the repo on. This is possible using Windows, but is more tedious, and I will not be getting into it right now, this may be added later on though.
-
 
 ### If you are using a Mac, you will need:
 * [Homebrew](brew.sh) - This is a package manager for Mac. If you don't have this already, paste the line below into your terminal:
@@ -35,6 +35,11 @@ brew install md5sha1sum
 git
 ```
 If you don't have git installed already, you will be prompted to install the command line tools.
+
+* Other utilities: `dpkg-scanpackages`, `bzip2` & `xz`. They are useful to create files `Pckages` and all compressed `Packages.*` files, that will be read by the package manager. You can also install them by running:
+```
+brew install dpkg-scanpackages bzip2 xz
+```
 
 
 ### If you are using Linux, you may need:
@@ -88,7 +93,7 @@ git push origin master
 
 Now you should be able to navigate to [Your Username Here].github.io and you will be taken to your new Repo!
 
-Be sure to update the index.html with the link to your new repo, and customize the page however you want.
+Be sure to update the index.html with the link to your new repo, and customize the page however you want. Provide a `favicon.ico` (size: 64x64 or more) file on the root on the repo and a `CydiaIcon.png` (size: 256x256 or more) file to add nice icons and Cydia icon to your repo.
 
 ## Package Configuration
 
@@ -105,6 +110,7 @@ Depends: mobilesubstrate
 Version: 0.0.2
 Architecture: iphoneos-arm
 Description: An example package for testing out our personal Cydia repository
+Icon: https://url-to-your/icon.png
 Depiction: https://mdausch.github.io/depictions/?p=com.mdausch.exampletweak
 Maintainer: Maxwell Dausch <max.dausch@gmail.com>
 Author: Maxwell Dausch <max.dausch@gmail.com>
@@ -118,12 +124,15 @@ Lets break down each of these fields:
 * **Version:** This is simply the version number. This is how your users will know if there is an update for your package. If a user has version 1.0 installed, and your repo has version 1.0.1 being hosted, Cydia will show them that an update is available.
 * **Architecture:** You should NOT change this from `iphoneos-arm` This is the type of our package
 * **Description:** This is just a short description of the package.
+* **Icon:** The icon of your package, to give it a nice look in Cydia.
 * **Depiction:** This is the link to a custom depiction page for the package. This is how people add screenshots and custom styling to the descriptions of packages in Cydia. If you provide a link here, the "Description" field in the control file is no longer displayed
 * **Maintainer:** This is the person who built the package. Issues with the packaging of the software should be sent to them. You can add their email by placing it in these brackets `<>`  For example `<max.dausch@gmail.com>` would show up in Cydia as the maintainer for my packages, allowing users to send issues over email.
 * **Author:** This is the person who originally wrote the software. This is who should be contacted about bugs in the tweak or theme itself. You can add their email similarly to the maintainer field with these brackets `<>`
 * **Section:**  This is where your package will be displayed in Cydia. `Tweaks` will be placed in the tweaks category. `Games` will be placed in the games category. Feel free to make your own category for your repo if you want to
 
 Other fields you may want to add:
+
+* **SileoDepiction:** Use this field to create a Sileo-specific depiction page, written in `json`. More details below.
 
 * **Depends:** Use this field to add the bundle id for any dependencies you may need with your package. Such dependencies may include mobilesubstrate for tweaks or anemone for theming
 
@@ -155,8 +164,10 @@ part. This is what tells the depiction page to parse the info.xml file, and fill
 Currently, the depiction implementation that I have provided is pretty bare bones. The info.XML file will look similar to this:
 
 ```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
 <packageInfo>
-    <bundleId>com.mdausch.exampletweak</bundleId>
+    <bundleId>ch.mdaus.exampletweak</bundleId>
     <name>Example Tweak</name>
     <version>0.0.2</version>
     <descriptions>
@@ -169,7 +180,7 @@ Currently, the depiction implementation that I have provided is pretty bare bone
     </descriptions>
     <compatibility>
         <miniOS>11.0</miniOS>
-        <maxiOS>11.1.2</maxiOS>
+        <maxiOS>13.5</maxiOS>
     </compatibility>
     <dependencies>
         <dependency>mobilesubstrate</dependency>
@@ -177,7 +188,7 @@ Currently, the depiction implementation that I have provided is pretty bare bone
     </dependencies>
     <changelog>
         <change>
-            <changeVersion>V0.0.2 </changeVersion>
+            <changeVersion>V0.0.2</changeVersion>
             <changeDescription>An important change</changeDescription>
             <changeDescription>Another important change</changeDescription>
         </change>
@@ -186,6 +197,26 @@ Currently, the depiction implementation that I have provided is pretty bare bone
             <changeDescription>Initial Release</changeDescription>
         </change>
     </changelog>
+    <screenshots>
+        <screen>1.png</screen>
+        <screen>2.png</screen>
+        <screen>3.png</screen>
+        <screen>4.png</screen>
+    </screenshots>
+    <information>
+        <developer>YOUR NAME</developer>
+        <price>PRICE</price>
+        <lastupdate>DATE</lastupdate>
+        <release>DATE</release>
+        <category>Tweaks</category>
+    </information>
+    <links>
+        <github>GITHUB LINK</github>
+        <twitter>TWITTER LINK</twitter>
+        <mail>mailto:your@mail.com</mail>
+        <paypal>PAYPAL LINK</paypal>
+        <reddit>REDDIT LINK</reddit>
+    </links>
 </packageInfo>
 ```
 The important bits are as follows:
@@ -196,19 +227,26 @@ The important bits are as follows:
 * **miniOS:** This displays the minimum version that your package should be installed on
 * **maxiOS:** This displays the maximum version that your package should be installed on
 * **dependency:** Add a new dependency tag for each dependency that your package requires
-* **changelog:** This will be a list of all the changes your packages have gone through. To add a new change, create a `change` tag. In this tag, you will add a `changeVersion` tag to let users know which change you are writing about. Then after that tag, add a `changeDescription` tag listing what you have modified, added, or removed from the package. You can add as many of these descriptions as you want. They will automatically be styled as a list.
+* **changelog:** This will be a list of all the changes your packages have gone through. To add a new change, create a `change` tag. In this tag, you will add a `changeVersion` tag to let users know which change you are writing about. Then after that tag, add a `changeDescription` tag listing what you have modified, added, or removed from the package. You can add as many of these descriptions as you want.  
+Only the latest version will be shown in the main page. The others can be found by clicking on `Full Changelog`, where they will automatically be styled as a list.
 
 
 Use the provided example info.xml as a guide for how this should be formatted with your information.
 
-### TODO functionality
+* **screenshots:** This display a view containing all the screenshots provided in a `screen` tag. Note that this is a path, so be careful depending on where you put your images.
+* **information:** Put here all your information.
+* **links:** Put here all your links to your networks. Delete the entry in `setDepiction.js` (line 67 to 71) to not show them in the depiction page.  
 
-Here are a few features I would like to add to the depiction page:
+The depiction page also includes a ready-to-use version checker based on versions provided in `miniOS` and `maxiOS` and an adaptive dark mode that triggers based on device dark mode state. You can remove it by deleting the end of the `main.css` file mentioning it.
 
-* [ ] Screenshots - Either inline or a separate page for screenshots for your package
-* [ ] A Better ChangeLog - Cut down on the clutter and only show the most recent version's changes and then provide a link to another page with the full list of changes
-* [ ] Version Checking - Parse the user agent and figure out if a user's device is compatible with the min and max versions specified
+### Sileo stuff (optional)
+Sileo requires two specific files, optimized for it and written both in `json`. These are the depiction and the `sileo-featured.json` file:
 
+* **Sileo Depiction:** Contains all json objects to create a nice-looking depiction in Sileo. The one provided here is not necessarily the best, you can create your own by following the [official Sileo documentation](https://developer.getsileo.app/native-depictions). Add it in your package's control file within a `SileoDepiction` tag and a link to the json file.
+
+* **sileo-featured.json:** This file provides banners overview on your repo's page in Sileo. For each package you want to highlight, just add `banners` sub-object in the file with all information. Documentation [here](https://developer.getsileo.app/sileo-featured). This file works also in other package managers like Zebra.
+
+_N.B.: Note that these two Sileo files are fully optional and won't break neither your repo nor your packages in Sileo. They are just here to add a full compatibility with Sileo._
 
 ## Adding Tweaks
 
@@ -239,9 +277,9 @@ where `Package` is the name of the folder you are compressing
 
 ## Updating The Repo
 
-Once all of your debs and depictions have been placed in the proper place it is time to update the repo. To do this run the UpdateRepo.sh file from inside your repo in the terminal by typing ./UpdateRepo.sh If this gives you some sort of permissions error, run
+Once all of your debs and depictions have been placed in the proper place it is time to update the repo. To do this run the updateRepo.sh file from inside your repo in the terminal by typing ./updateRepo.sh If this gives you some sort of permissions error, run
 ```
-chmod +x UpdateRepo.sh && chmod +x dpkg-scanpackages
+chmod +x updateRepo.sh && chmod +x dpkg-scanpackages
 ```
 and try running the update script once again.
 
