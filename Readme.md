@@ -242,7 +242,7 @@ The depiction page also includes a ready-to-use version checker based on version
 ### Sileo stuff (optional)
 Sileo requires two specific files, optimized for it and written both in `json`. These are the depiction and the `sileo-featured.json` file:
 
-* **Sileo Depiction:** Contains all json objects to create a nice-looking depiction in Sileo. The one provided here is not necessarily the best, you can create your own by following the [official Sileo documentation](https://developer.getsileo.app/native-depictions).
+* **Sileo Depiction:** Contains all json objects to create a nice-looking depiction in Sileo. The one provided here is not necessarily the best, you can create your own by following the [official Sileo documentation](https://developer.getsileo.app/native-depictions). Add it in your package's control file within a `SileoDepiction` tag and a link to the json file.
 
 * **sileo-featured.json:** This file provides banners overview on your repo's page in Sileo. For each package you want to highlight, just add `banners` sub-object in the file with all information. Documentation [here](https://developer.getsileo.app/sileo-featured). This file works also in other package managers like Zebra.
 
