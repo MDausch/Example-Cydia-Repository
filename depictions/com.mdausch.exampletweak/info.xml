@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
 <packageInfo>
     <bundleId>ch.mdaus.exampletweak</bundleId>
     <name>Example Tweak</name>
@@ -12,7 +14,7 @@
     </descriptions>
     <compatibility>
         <miniOS>11.0</miniOS>
-        <maxiOS>11.1.2</maxiOS>
+        <maxiOS>13.5</maxiOS>
     </compatibility>
     <dependencies>
         <dependency>mobilesubstrate</dependency>
@@ -20,7 +22,7 @@
     </dependencies>
     <changelog>
         <change>
-            <changeVersion>V0.0.2 </changeVersion>
+            <changeVersion>V0.0.2</changeVersion>
             <changeDescription>An important change</changeDescription>
             <changeDescription>Another important change</changeDescription>
         </change>
@@ -29,4 +31,24 @@
             <changeDescription>Initial Release</changeDescription>
         </change>
     </changelog>
+    <screenshots>
+        <screen>1.png</screen>
+        <screen>2.png</screen>
+        <screen>3.png</screen>
+        <screen>4.png</screen>
+    </screenshots>
+    <information>
+        <developer>YOUR NAME</developer>
+        <price>PRICE</price>
+        <lastupdate>DATE</lastupdate>
+        <release>DATE</release>
+        <category>Tweaks</category>
+    </information>
+    <links>
+        <github>GITHUB LINK</github>
+        <twitter>TWITTER LINK</twitter>
+        <mail>mailto:your@mail.com</mail>
+        <paypal>PAYPAL LINK</paypal>
+        <reddit>REDDIT LINK</reddit>
+    </links>
 </packageInfo>
